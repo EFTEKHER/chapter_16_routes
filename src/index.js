@@ -3,15 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
-import { BrowserRouter as Router ,Route ,Routes} from 'react-router-dom';
+import {   createBrowserRouter,
+  RouterProvider,} from 'react-router-dom';
+import Missing from './Missing';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <Missing />,
+  },
+]);
 root.render(
   <React.StrictMode>
-  <Router>
- <Routes>
- <Route path='/' element={<App/>} />
- </Routes>
-</Router>
+  <RouterProvider router={router}/>
   </React.StrictMode>
 );
 
