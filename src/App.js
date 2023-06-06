@@ -12,6 +12,7 @@ import Missing from './Missing';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
+import useWindowSize from './hooks/useWindowSize';
 import api from './api/posts'
 function App() {
   const [posts, setPosts] = useState([])
@@ -21,6 +22,8 @@ function App() {
   const [postBody, setPostBody] = useState('');
   const [editTitle, setEditTitle] = useState('');
   const [editBody, setEditBody] = useState('');
+  const {width}=useWindowSize();
+  
   const history = useNavigate();
   useEffect(()=>{
     const fetchPost =async()=>{
@@ -103,7 +106,7 @@ useEffect(()=>{
 },[posts,search])
   return (
     <div className="App">
-   <Header title="React JS Blog"/>
+   <Header title="React JS Blog" width={width}/>
    <Nav search={search} setSearch={setSearch}/>
   <Routes>
  
